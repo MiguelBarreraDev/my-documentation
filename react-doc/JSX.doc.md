@@ -1,23 +1,23 @@
-## Conceptos de Javascript Moderno
-- Definimos variables con declaraciones **let y cons**
-- Usamos las palabra **class** para definir las clases de JavaScript
-- Usamos a veces **=>** para deifinir "arrow functions"
+## Conceptos de JavaScript Moderno
+- Definimos variables con declaraciones **let y const**
+- Usamos la palabra **class** para definir las clases en JavaScript
+- Usamos a veces **=>** para deifinir funciones (arrow functions)
 https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c
 
 ## Introdución JSX
-```javaScript
+```javascript
 const element = <h1>Hello, world</h1>;
 ```
-- No es cadena, ni HTML
+- No es , ni HTML
 - Es una extensión de sintaxis de JavaScript
 ### Why ?
 - React acepta el hecho de que la lógica de renderizado está inherentemente
-	con otra lógica de la interfaz de usuario
+	ligada con la lógica de la interfaz de usuario
 - No separa el marcado y la lógica
-- Separa las preocupaciones con unidades acopladas llamadas **componente**
+- Separa las preocupaciones con unidades acopladas llamadas **componentes**
 ### Incrustar expresiones en JSX
 - Puede poner cualquier expresión de JavaScript válida dentro de las llaves
-```javaScript
+```javascript
 const name = 'Josh Perez';
 const element = <h1>Hello, {name}</h1>; /* Expresiones */
 
@@ -29,7 +29,7 @@ ReactDOM.render(
 - JSX también es una expresión
 - Después de la compilación, las expresiones JSX se convierten en llamadas de función
 	JavaScript regulares
-```javaScript
+```javascript
 function getGreeting(user) {
 if (user) {
 	return <h1>Hello, {formatName(user)}!</h1>;
@@ -39,24 +39,24 @@ if (user) {
 ```
 ### Expecificación de atributos con JSX
 Literales
-```javaScript
+```javascript
 const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 Expresiones
-```javaScript
+```javascript
 const element = <img src={user.avatarUrl}></img>;
 ```
 **_Advertencia_**
 React DOM usa camelCase -> la convención de nomenclatura de propiedades
 en lugar de los nombres de atributos HTML
-```javaScript
+```javascript
 /* Examples: Conversiones */
 class -> className
 tabindex -> tabIndex
 ```
 ### Specifying Children with JSX
 ```javaScript
-const element = <img src={user.avatarUrl} />;t
+const element = <img src={user.avatarUrl} />;
 ```
 ```javaScript
 const element = (
@@ -67,17 +67,16 @@ const element = (
 );
 ```
 ### JSX previene los ataques de inyección
-```javaScript
+```javascript
 const title = response.potentiallyMaliciousInput;
 /* This is safe: */
 const element = <h1>{title}</h1>;
 ```
-- Todo se convierte en cadena en una cadena antes de ser renderizado.
+- Todo se convierte en una cadena antes de ser renderizado.
 - Ayuda a prevenir ataques XXS (cross-site-scripting)
-
 ### JSX representa objetos
 Babel compila **JSX** hasta las **React.createElement()** llamadas
-```javaScript
+```javascript
 /************************************/
 const element = (
   <h1 className="greeting">
@@ -102,7 +101,7 @@ const element = {
 ```
 
 ## Rendering(Representar) Elements
-```javaScript
+```javascript
 const element = <h1>Hello, world</h1>;
 ```
 - Los elementos son los componentes básicos más pequeños de las aplicaciones React
@@ -111,7 +110,7 @@ const element = <h1>Hello, world</h1>;
 ### Rendering an Element into the DOM
 - Los elementos son de lo que están 'hechos' los componentes
 - Para representar un elemento React en un nodo DOM raíz, pase ambos a ReactDOM.render()
-```javaScript
+```javascript
 const element = <h1>Hello, world</h1>;
 ReactDOM.render(element, document.getElementById('root'));
 ```
@@ -119,7 +118,7 @@ ReactDOM.render(element, document.getElementById('root'));
 - React elements are inmutable
 - An element is like a single frame in a movie: it respresents the UI at certain point in time
 - Only way to update the UI is to create a new element
-```javaScript
+```javascript
 function tick() {
   const element = (
     <div>
@@ -134,5 +133,5 @@ function tick() {
 setInterval(tick, 1000);
 ```
 ### React Only Updates What’s Necessary
-React DOm compara elementos y subelementos con el anterior, y aplica actualizaciones
+ReactDOM compara elementos y subelementos con el anterior, y aplica actualizaciones
 necesarias para llevar el DOM al estado deseado
