@@ -92,7 +92,7 @@ function Comment(props) {
 ```
 ```javascript
 /**
- * - Avatar no necesita saber suc contexto de uso
+ * - Avatar no necesita saber su contexto de uso
  * - Nombrar props desde el propio punto de vista del componente
  */
 function Avatar(props) {
@@ -155,4 +155,4 @@ function withdraw(account, amount) {
 
 ### Regla Estricta
 **Todos los componentes de React deben actuar como funciones puras con
-respecto a sus props(propiedades).**
+respecto a sus props (propiedades).**
