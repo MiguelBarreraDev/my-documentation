@@ -1,5 +1,5 @@
-# REACT - Una biblioteca de javascript para contruir UI's
-- Declarativa: No imperativa, ejemplo de comprar sushi
+# REACT - Una biblioteca de JavaAcript para contruir UI's
+- Declarativa: No imperativa, ejemplo de comprar sushi 
 - Basada en componentes: Reutilizar código
 - Una de las bibliotecas más usadas(npm)
 
@@ -84,6 +84,6 @@ A la hora de declarar rutas
 - Renderiza toda la pagina
 <Link></Link>
 - Renderiza solo el componente
-- Hace enlaces que utilicen el history del navegador sin refersacr al página
+- Hace enlaces que utilicen el historial del navegador sin refrescar la página
 */
 ```
