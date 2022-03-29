@@ -31,7 +31,7 @@ llamar a ReactDOM.render() cada vez
 - **Convert to class componente**
 ```javascript
 /**
- * Clase ES& que hereda de React.Component
+ * Clase ES6 que hereda de React.Component
  * render: método heredado
  * this: Hace referencia al componente (Clock)
  */
@@ -50,8 +50,8 @@ class Clock extends React.Component {
  */
 ```
 ## Adding local state
-- Agregar un constructor de clase que asigne el estado inicial*/
-- Los componentes de clase siempre deben llamar al constructor base con props */
+- Agregar un constructor de clase que asigne el estado inicial
+- Los componentes de clase siempre deben llamar al constructor base con props
 
 ## Adición de métodos de ciclo de vida
 En aplicaciones con muchos componentes, es muy importante liberar recursos
@@ -85,7 +85,7 @@ class Clock extends React.Component {
     );
   }
   /**
-   * Método integrado de demontaje
+   * Método integrado de desmontaje
    * Se ejecuta cuando se remueve el componente del arbol de nodos del DOM
    */
   componentWillUnmount() {
