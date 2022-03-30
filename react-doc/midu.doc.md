@@ -61,7 +61,8 @@ Install with yarn
  */
 yarn add wuoter
 ```
-Import to the project
+#### Import to the project
+**Link & Route - Componenets**
 ```javascript
 import { Link, Route } from 'wuoter'
 
@@ -86,4 +87,107 @@ A la hora de declarar rutas
 - Renderiza solo el componente
 - Hace enlaces que utilicen el historial del navegador sin refrescar la página
 */
+```
+**useLocation - Custom Hook**
+```javascript
+import {useLocation} from 'wuoter'
+/* useLocation retorna -> ['/', f] */
+/* function: f (to, replace) - Para navegar de forma programática, sin links */
+export default function Home() {
+const [path, pushLocation] = useLocation()
+	/**
+	 * handleSubmit. Atrapa un evento submit
+	 * pushLocation. navega a una ruta específica cuando se de el evento submit
+	 */
+	const handleSubmit = evt => {
+		evt.preventDefault()
+		// navegar a otra ruta
+		pushLocation(`/search/${keyword}`)
+	}
+}
+```
+
+## Custom Hook
+- Los Hooks simplifican nuestros componentes
+- Los Hooks nos permiten crear nuestros propios Hooks
+- Extracción de lógica para ser utilizada en múltiples componentes
+```javascript
+/*------- Custom hook ---------*/
+/* Hooks integrados */
+import {useEffect, useState} from 'react'
+/* Función que realiza una petición a un API para traerse los gifs */
+import getGifs from '../services/getGifs'
+/**
+ * useGifs (Custom Hook) - Obtener una arreglo de gifs en base a una keyword
+ * Se utiliza destructuración en los parámetros, para usar párametros nombrados
+ * @return (object) - Contain a state and a arreglo de gifs
+ */
+export default function useGifs ({keyword} = {keyword: null}) {
+	const [loading, set Loading] = useState(false)
+	const [gifs, setGifs] = useState([])
+
+	const keywordtoUse = keyword || localStorage.getItem("lastKeyword") || "random"
+
+	useEffect(function () {
+		setLoading(true)
+		getGifs({keyword}) /* async */
+			.then(gifs => {
+				setGifs(gifs)
+				setLoading(false)
+				if (keyword) localStorage.setItem('lastKeyword', keyword)
+			})
+	}, [keyword])
+
+	return {loading, gifs}
+}
+```
+
+## Context
+Es un objeto mágico que puede ser utilizado desde cualquier componente
+```javascript
+import React from 'react'
+
+const Context = React.createContext(
+	/* Objeto inicial que se provee en caso de que no se defina un proveedor */
+	{
+		name: 'Esto es sin provider',
+		suscribeteAlCanal: true
+	}
+)
+
+export default Context
+```
+### Proveedor
+Delimita el rango donde puede ser utilizado el objeto proveido
+```javascript
+/* Proveer un value */
+	return (
+		<StatictContext.Provider value={
+			{
+				name: 'Esto es con provider',
+				suscribeteAlCanal: true
+			}
+		}>
+			<!-- Inicia rango -->
+			<section>
+			.  
+			.
+			.
+			</section>
+			<!-- termina rango -->
+		</StatictContext.Provider> 
+	)
+```
+
+### Consumidor
+Define desde donde se utliza el objeto mágico
+```javascript
+/* Consumiento del contexto */
+import React , {useContext} from 'react'
+import StatictContext from '../../context/StatictContext'
+
+export default function Detail({params}) {
+	const context = useContext(StaticContext)
+	return <h1>Gif con id {params.id}</h1>
+}
 ```
