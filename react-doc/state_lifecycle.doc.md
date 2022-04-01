@@ -1,7 +1,6 @@
 # State and Lifecycle
 - **Código a perfeccionar**
 ```javascript
-
 function Clock(props) {
   return (
     <div>
@@ -23,7 +22,7 @@ setInterval(tick, 1000);
 ## Iniciamos
 - Estos conceptos nos permitirán renderizar componentes sin la necesidad de
 llamar a ReactDOM.render() cada vez
-- Permitirán que los componentes sean relamente reutlizables y encapsulados
+- Permitirán que los componentes sean realmente reutlizables y encapsulados
 
 ## State
 - Similar a props, pero es privado y está completamente controlado por el
