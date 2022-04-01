@@ -178,7 +178,6 @@ Delimita el rango donde puede ser utilizado el objeto proveido
 		</StatictContext.Provider> 
 	)
 ```
-
 ### Consumidor
 Define desde donde se utliza el objeto mágico
 ```javascript
