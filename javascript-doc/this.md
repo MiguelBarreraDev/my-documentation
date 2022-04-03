@@ -4,11 +4,11 @@
 - Tiene diferencias entre el modo estricto y el modo no estricto
 - En la mayoría de casos, el valor de **this** está determinado por cómo se llama
 	a una función (enlace en tiempo de ejecución)
-- ES5 introdujo el bind() método para establecer el valor de **this** independientmente
+- ES5 introdujo el **bind()** método para establecer el valor de **this** independientmente
 	de como se llame
-- ES2015 introdujo las **arrow functions** que no proporcionan su propio this
+- ES2015 introdujo las **arrow functions** que no tienen sus propios enlaces a **this** o **super()**
 ```javascript
-/* Simple definition of the arrow function */
+/* Simple definition of an arrow function */
 const function_name = (params) => {
 	// instructions...
 }
@@ -16,8 +16,8 @@ const function_name = (params) => {
 
 ## Contexto Global
 - Fuera de cualquier función
-- This se refiere al objeto global
-- In the browser, the window object is also the global object
+- **This** se refiere al objeto global
+- In the browser, the **window** object is also the global object
 ```javascript
 /**
  * Siempre puede obtener fácilmente el objeto global utlizando la
@@ -39,7 +39,7 @@ console.log(window.text) // "tell me Daddy"
  * El código no está en modo estricto.
  * El valor de 'this' no está establecido por la llamada.
  * 
- * 'this' se establecera de forma predeterminada en el objeto global
+ * 'this' se establecerá de forma predeterminada en el objeto global
  */
 function f1() {
 	return this
@@ -124,7 +124,7 @@ class Base {
 }
 // Referencia a 'this' despues de llamar al método 'super()'
 // :)
-class DerivedClass1()
+class DerivedClass1 extends Base()
 {
 	cosntructor() {
 		super()
@@ -134,7 +134,7 @@ class DerivedClass1()
 }
 // Referencia a 'this' antes de llamar al método 'super()'
 // :(
-class DerivedClass2()
+class DerivedClass2 extends Base()
 {
 	cosntructor() {
 		this.lastname = "De ti"
@@ -147,7 +147,7 @@ new DerivedClass1() // {name: 'Pepito', lastname: 'De ti'}
 new DerivedClass2() // ReferenceError
 ```
 - En general las clases derivadas no deben regresar antes de llamar a **super()**
-- Pueden Regresar si devuelven un **Object** o no tengan constructor
+- Pueden Regresar si devuelven un **Object** o no tienen constructor
 ```javascript
 class Base {}
 /* Derived classes */
@@ -163,5 +163,5 @@ class Bad extends Base {
 
 new Good() // Permitido - No hay constructor
 new AlsoGood() // Permitido - Retorna un objeto 
-new Bad() // Error - tiene constructor pero no llama antes a super() 
+new Bad() // Error - Tiene constructor pero no llama antes a super() 
 ```
