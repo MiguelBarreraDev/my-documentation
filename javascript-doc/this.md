@@ -4,8 +4,30 @@
 - Tiene diferencias entre el modo estricto y el modo no estricto
 - En la mayoría de casos, el valor de **this** está determinado por cómo se llama
 	a una función (enlace en tiempo de ejecución)
-- ES5 introdujo el **bind()** método para establecer el valor de **this** independientmente
-	de como se llame
+- ES5 introdujo el **bind()** método para establecer el valor de **this** 
+	independientmente de como se llame
+```javascript
+/**
+ * llamando a bind() -> f.bind(someObject)
+ * 
+ * Se crea una nueva función con el cuerpo y alcance de 'f'.
+ * 'this' ocurre en la función original.
+ * La nueva función está permanentemente vinculada al primer argumento de bind()
+ */
+function f() {
+  return this.a;
+}
+
+var g = f.bind({a: 'azerty'});
+console.log(g()); // azerty
+
+// No se puede realizar una nueva vinculación a partir de una función ya vinculada
+var h = g.bind({a: 'yoo'}); // bind solo funciona una vez
+console.log(h()); // azerty
+
+var o = {a: 37, f: f, g: g, h: h};
+console.log(o.a, o.f(), o.g(), o.h()); // 37,37, azerty, azerty
+```
 - ES2015 introdujo las **arrow functions** que no tienen sus propios enlaces a **this** o **super()**
 ```javascript
 /* Simple definition of an arrow function */
@@ -164,4 +186,65 @@ class Bad extends Base {
 new Good() // Permitido - No hay constructor
 new AlsoGood() // Permitido - Retorna un objeto 
 new Bad() // Error - Tiene constructor pero no llama antes a super() 
+```
+## Contexto en Arrow Functions
+- **this** conserva el valor del contexto léxico adjunto a **this**
+- Pase lo que pase, this se establece en lo que era cuando se creó
+```javascript
+let globalObject = this
+let foo = (() => this);
+console.log(foo() === globalObject); // true - in browser(window === window)
+```
+- Si **this** se pasa a **call**, **bind** o **apply** al invocar una **arrow function**,
+	se ignorará. Todavía puede mandar parámetros a la función
+```javascript
+// Call as a method of an object
+// this no se altera por la forma en como se llama a la arrow function
+var obj = {func: foo};
+console.log(obj.func() === globalObject); // true - in browser (window === window)
+
+// Attempt to set this using call
+// 'call' establece el valor de 'this' al objeto que se pasa como 1er parámetro -
+// 'call' es ignorado cuando se trata de una arrow function +
+console.log(foo.call(obj) === globalObject); // true - in browser (window === window)
+
+// Attempt to set this using bind
+// 'bind' crea una nueva función con el cuerpo y alcance de foo -
+// La nueva función está enlazada permanentemente al primer parámetro de 'bind' -
+// 'bind' es ignorado cuando se trata de una arrow function +
+foo = foo.bind(obj);
+console.log(foo() === globalObject); // true - in browser (window === window)
+```
+- **Arrow functions** dentro de otras funciones, sus **this** son permanentemente
+	los de su contexto léxico envolvente
+- Contexto léxico envolvente - la función que envuelve a la arrow function
+```javascript
+// Create obj with a method bar that returns a function that returns its this.
+// 'this' está vinculado permanentemente al de la función envolvente
+// Se puede modificar el this de bar en la forma en como se le llame
+// Una modificación en el 'this' bar, afecta al this de la arrow function
+var obj = {
+  bar: function() {
+    var x = (() => this);
+    return x;
+  }
+};
+
+// Al llamar a bar como método, se configura su 'this' como referencia a obj
+// La referencia se asigna a la función devuelta a fn
+var fn = obj.bar();
+
+// Call fn without setting this, would normally default
+// to the global object or undefined in strict mode
+console.log(fn() === obj); // true
+
+// But caution if you reference the method of obj without calling it
+// Se establece el 'this' de una función regular, por la forma en como es llamada, pero
+// no aplica cuando es referenciada
+var fn2 = obj.bar;
+// Calling the arrow function's this from inside the bar method()
+// will now return window, because it follows the this from fn2.
+// 'this' no es establecido en la función regular
+// Por defecto 'this' referencia al 'window' objeto global o undefined en modo estricto
+console.log(fn2()() == window); // true
 ```
