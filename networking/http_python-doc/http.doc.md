@@ -34,3 +34,23 @@ aquellos que operan en la capa de aplicación se denominan proxies.
 - Equilibrio de carga
 - Autenticación
 - Registro
+
+## Aspectos básicos de HTTP
+### HTTP es simple
+Es legible por humanos, lo que facilita las pruebas para los desarroladores y reduce
+la complejidad para los recien llegados.
+### HTTP es extensible
+Los encabezados hacen que este protocolo sea fácil de ampliar y experimentar
+### HTTP es sin estado, pero no sin sesión
+Sin estado, ya que no existe vinculo entre dos solicitudes que se realizan de manera
+sucesiva. Mientras que, las cookies de HTTP permiten el uso de sesiones con estado y
+así compartir un mismo contexto o el mismo estado entre solicitudes.
+### HTTP y conexiones
+Una conexión se controla en la capa de transporte, por lo tanto, fuera del alcance
+de HTTP. Por lo que HTTP requiere de un protocolo en la capa de transporte que sea
+confiable (TCP).
+El comportamiento predeterminado de HTTP/1.0 es abrir una conexión TCP para cada par
+de request/reponse HTTP, lo cual no es eficiente.
+HTTP/1.1 introdujo la canalización y conexiones persistentes, donde la conexión TCP
+subyacente se puede controlar parcialmente mediante la "Connection" encabezado.
+HTTP/2 fue una paso más allá al multiplexar mensajes a través de una sola conexión.
