@@ -4,6 +4,12 @@ a almacenar, organizar y luego recuperar datos.
 
 ## Components
 ### Validate password
+```mysql
+-- Install componente
+INSTALL COMPONENT 'file://component_validate_password';
+-- Uninstall componente
+UNINSTALL COMPONENT 'file://component_validate_password';
+```
 - Permite mejorar la seguridad al momento de requerir contraseñas
 - Brinda pruebas de seguridad de contraseñas potenciales
 - Expone variables del sistema para configurar la política de contraseñas
