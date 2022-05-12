@@ -11,10 +11,10 @@ INSTALL COMPONENT 'file://component_validate_password';
 UNINSTALL COMPONENT 'file://component_validate_password';
 ```
 - Permite mejorar la seguridad al momento de requerir contraseñas
-- Brinda pruebas de seguridad de contraseñas potenciales
+- Brinda pruebas de seguridad para contraseñas potenciales
 - Expone variables del sistema para configurar la política de contraseñas
 - Expone variables de estado para la supervisión del componente
-- Implementa tres niveles de contraseña: Low, Mediun (default) y Strong.
+- Implementa tres niveles de contraseña: Low, Medium (default) y Strong.
 ```mysql
 /**
  * Low: Solo prueba la longitud de la contraseña
@@ -62,7 +62,7 @@ mysql> SELECT VALIDATE_PASSWORD_STRENGTH('Weak')
 - Produce un error si la contraseña no cumple con la política de contraseñas
 ```mysql
 -- Command
-mysql> ALTER USER USER() IDENTIFIED BY 'abc';
+mysql> ALTER USER username@host IDENTIFIED BY 'abc';
 -- Output
 ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
 ```
