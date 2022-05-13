@@ -6,14 +6,14 @@ from flask import Flask
 ```
 Objeto para definir una Flask aplication, cuyo primer parametro
 le permite a Flask identificar la aplicación a ejecutar.
-Flask ejecuta la aplicación proveída en "FLASK_APP" environment variable, and a
-"wsgi.py" or "app.py" module.
+Flask ejecuta la aplicación proveída en la variable de entorno "FLASK_APP" , y "wsgi.py"
+o "app.py" module.
 ```python
 # Crea una instancia del objeto Flask
 # __name__ :
-#	 Representa el nombre del paquete de la aplicacón.
-#	 Se usa para indicar dónde se encuentra la aplicación.
-#	 Flask lo utiliza para identificar recursos: plantillas, static files, instance path...
+# - Representa el nombre del paquete de la aplicacón.
+#	- Se usa para indicar dónde se encuentra la aplicación.
+#	- Flask lo utiliza para identificar recursos: plantillas, static files, instance path...
 app = Flask(__name__)
 ```
 ## Configuración para flask-mysqldb module
