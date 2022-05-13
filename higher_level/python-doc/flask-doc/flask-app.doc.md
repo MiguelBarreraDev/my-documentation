@@ -11,9 +11,9 @@ Flask ejecuta la aplicación proveída en "FLASK_APP" environment variable, and 
 ```python
 # Crea una instancia del objeto Flask
 # __name__ :
-#		Representa el nombre del paquete de la aplicacón.
-#		Se usa para indicar dónde se encuentra la aplicación.
-#		Flask lo utiliza para identificar recursos: plantillas, static files, instance path...
+#	 Representa el nombre del paquete de la aplicacón.
+#	 Se usa para indicar dónde se encuentra la aplicación.
+#	 Flask lo utiliza para identificar recursos: plantillas, static files, instance path...
 app = Flask(__name__)
 ```
 ## Configuración para flask-mysqldb module
