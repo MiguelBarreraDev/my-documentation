@@ -1,101 +1,44 @@
 # Flask
-
-## Definir una aplicación con Flask
-```python
-from flask import Flask
-```
-Objeto para definir una Flask aplication, cuyo primer parametro
-le permite a Flask identificar la aplicación a ejecutar.
-Flask ejecuta la aplicación proveída en "FLASK_APP" environment variable, and a
-"wsgi.py" or "app.py" module.
-```python
-# Crea una instancia del objeto Flask
-# __name__ :
-#		Representa el nombre del paquete de la aplicacón.
-#		Se usa para indicar dónde se encuentra la aplicación.
-#		Flask lo utiliza para identificar recursos: plantillas, static files, instance path...
-app = Flask(__name__)
-```
-## Configuración para flask-mysqldb module
-```python
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = 'root'
-app.config["MYSQL_PASSWORD"] = 'password'
-app.config["MYSQL_DB"] = 'my_database'
-.
-.
-```
-
-## Definir Rutas
-Se usa decoradores para lograrlo, donde se definen la ruta, el metodo, etc
-```python
-# Define la ruta.
-# Define el método que acepta la ruta en cuestión.
-# La función debajo de los decoradores es la que se ejecuta cuando llega una peitición
-#		a dicha ruta
-@app.route('/', ['GET'])
-def index():
-	return "Welcome to my web page"
-
-@app.route('/add_contact', ['POST'])
-def add_contact():
-	return "Saved contact"	
-```
-## Renderizar html desde el servidor
-Enviar template(html) desde el servidor al cliente
-### Estrcutura de archivos
-```shell
-- flask-app
-- + templates			// Directory donde Flask busca templates
-- - - index.html	// Template
-- - App.py				// Flask aplication
-```
-### Flask aplication
-```python
-from flask import Flask, render_template
-#...
-@app.route('/', ['GET'])
-def index():
-	return render_template("index.html")
-```
-
-## Manejo de solicitudes
-El objeto request contiene la información de la petición a la ruta
-```python
-# Caso: Datos de un formulario desde el cliente
-from flask import Flask, render_template, request
-#...
-@app.route('/add_contact', ['POST'])
-def add_contact():
-	if request.method == "POST":
-			fullname = request.form["fullname"]
-			phone = request.form["phone"]
-			email = request.form["email"]
-	return "Saved contact"
-```
-
-## Redirecionar al cliente desde el servidor
-```python
-from flask import Flask, render_template, request, redirect, url_for , flash
-# ...
-@app.route('/add_contact', ['POST'])
-def add_contact():
-	# Manejar la solicitud con el objeto request
-	return redirect(url_for("url_name"))
-```
-
-## Enviar mensajes desde el servidor
-Para evidenciar una acción de exito, error, etc
-```python
-from flask import Flask, render_template, request, flash
-# ...
-@app.route('/add_contact', ['POST'])
-def add_contact():
-	if request.method == "POST":
-			fullname = request.form["fullname"]
-			phone = request.form["phone"]
-			email = request.form["email"]
-			# Almacenar datos en la DB con flask-mysqldb module
-			flash("Contact Added successfully")
-	return redirect(urlf_for("url_name"))
-```
+***Es un framework de desarrollo web desarrollado en python***
+- Proporciona un servidor de desarrollo y un depurador
+- Utiliza lantillas Jinja2
+- Compatible con WSGI 1.0
+- Soporte integrado para pruebas unitarias
+- Muchas extensiones disponibles para flask
+## Por qué Flask es un micro-framework?
+Porque solo proporciona los componentes esenciales para el desarrollo web:
+- Enrutamiento
+- Manejo de solicitudes
+- Sesiones, etc
+Opuesto a los full-stack frameworks, que ofrecen modulos para autenticar, orm, etc.
+## Dónde está mi flask app?
+En el modelo arquitectónico cliente-servidor, una **Flask app** está del
+lado del servidor, esperando **requests** desde un cliente como el navegador.
+## Patrones de arquitectura de software ¿?
+### MVC (Model-View-Controller)
+Patrón de arquitectura de software en el que la lógica de la aplicación se
+divide en tres componentes en base a la funcionalidad.
+- **Modelos**
+Representan cómo se almacenan los datos en la base de datos, dado que,
+contienen todas las definiciones de datos para su aplicación (el esquema)
+- **Vistas**
+Componentes visibles para el usuario, como una salida o interfaz gráfica de
+usuario (GUI)
+- **Controladores**
+Actúan como interfaz entre los modelos y las vistas, interpretando entradas
+o interaciones del usuario, para realizar tareas en los modelos antes de
+devolver los datos apropiados a través de las vistas
+### MTV (Model-Template-View)
+Es una ligera variación de la arquitectura MVC, introducido por el framework
+Django.
+## WSGI y Jinja2
+### WSGI (Web Server Gateway Interface)
+Es un estandar que describe las especificaciones relativas a la comunicación
+entre un servidor web y una aplicación cliente.
+- **Flexibilidad** con los componentes de la aplicación
+- **Interoperabilidad** dentro de diferentes frameworks de python
+- **Escalabilidad** de la aplicación con aumento de usuarios
+- **Eficiencia** en términos de velocidad de desarrollo
+### Jinja2
+Es un motor de plantillas usado en python/Flask, usado dentro de HTML para
+que el contenido de la pagína HTML se vuelva dinámico.
