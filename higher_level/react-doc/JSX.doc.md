@@ -100,7 +100,7 @@ const element = {
 };
 ```
 
-## Rendering(Representar) Elements
+## What is a Element?
 ```javascript
 const element = <h1>Hello, world</h1>;
 ```
