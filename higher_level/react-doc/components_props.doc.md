@@ -1,6 +1,7 @@
-# Components and Props
-- Somo como funciones de JavaScript
-- Aceptan entradas arbitrarias(props)
+# Components
+- Classes or functions
+- Permitir dividir la interfaz de usuario en piezas independientes y reutilizables
+- Aceptan entradas arbitrarias (props)
 - Retornan elementos React que describen lo que debería aparecer en la pantalla
 
 ## Function and Class components
