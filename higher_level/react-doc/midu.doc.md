@@ -1,4 +1,4 @@
-# REACT - Una biblioteca de JavaAcript para contruir UI's
+# REACT - Una biblioteca de JavaAcript para construir UI's
 - Declarativa: No imperativa, ejemplo de comprar sushi 
 - Basada en componentes: Reutilizar código
 - Una de las bibliotecas más usadas(npm)
@@ -8,6 +8,7 @@
 - react-dom -> Posee el código para que react funcione en el navegador
 
 ## Conceptos
+- Virtual Dom -> Representación de una UI que se guarda en memoria y se sincroniza con el DOM real 
 - jsx -> Parecido a html pero es javascript
 - Props -> Propiedades que posee nuestros componentes
 - Fragment -> Renderizar multiples elementos secundarios sin agregar nodos adicionales
