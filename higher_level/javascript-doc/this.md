@@ -2,10 +2,9 @@
 - Una propiedad de un contexto de ejecución
 - Palabra clave
 - Tiene diferencias entre el modo estricto y el modo no estricto
-- En la mayoría de casos, el valor de **this** está determinado por cómo se llama
-	a una función (enlace en tiempo de ejecución)
+- En la mayoría de casos, el valor de **this** está determinado por cómo se llama a una función (enlace en tiempo de ejecución)
 - ES5 introdujo el **bind()** método para establecer el valor de **this** 
-	independientmente de como se llame
+	independientemente de como se llame
 ```javascript
 /**
  * llamando a bind() -> f.bind(someObject)
