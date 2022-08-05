@@ -15,6 +15,8 @@ const element = <h1>Hello, world</h1>;
 	ligada con la lógica de la interfaz de usuario
 - No separa el marcado y la lógica
 - Separa las preocupaciones con unidades acopladas llamadas **componentes**
+"La Separation of conerns (SoC), es una principio de diseño para separar un programa de computadora en distintas secciones"
+
 ### Incrustar expresiones en JSX
 - Puede poner cualquier expresión de JavaScript válida dentro de las llaves
 ```javascript
