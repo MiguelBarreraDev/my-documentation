@@ -8,7 +8,7 @@ https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c
 ```javascript
 const element = <h1>Hello, world</h1>;
 ```
-- No es , ni HTML
+- No es string, ni HTML
 - Es una extensión de sintaxis de JavaScript
 ### Why ?
 - React acepta el hecho de que la lógica de renderizado está inherentemente
